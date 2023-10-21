@@ -31,4 +31,16 @@ public:
   /* Accessors for use in testing */
   uint64_t sequence_numbers_in_flight() const;  // How many sequence numbers are outstanding?
   uint64_t consecutive_retransmissions() const; // How many consecutive *re*transmissions have happened?
+private:
+  bool set_syn = false;
+  bool set_fin = false;
+  bool turnTimer = false;
+  int cur_rto_ms = 0;
+  std::deque<TCPSenderMessage> outstanding_seg = {};
+  std::deque<TCPSenderMessage> message = {};
+  uint64_t abs_seq = 0;
+  uint64_t outstanding_bytes = 0;
+  uint64_t retrans_nums = 0;
+  TCPReceiverMessage rec_msg = {};
+  uint16_t window_size = 1;
 };
