@@ -21,14 +21,19 @@ To format code: `cmake --build build --target format`
 
 
 lab0:
-wget
+写一个函数，获取一个网页
+wget。是一个获取http协议网页的函数。
 
-ByteStream
+设计字节流类。
+ByteStream，是TCP协议的有序字节流，实现读写与容量控制。
+本次采用STL的deque数据结构存储，按照字节保存与输出。
+在peek函数中出现了string_view,string_view对字符串操作不会涉及多余的拷贝，只保存指针与长度。
 
 
 lab1:
-
-Reassembler
+对接收到的TCP数据包进行排序，实现流重组器类。
+Reassembler，由于TCP数据不一定是按序到达的，因此需要该类对收到数据排序，在第一个被确认字节到达时就要写入ByteStream。
+本次采用两个STL的deque数据结构存储，一个存储到达的数据，一个判断数据否已经存在。本次实现与书中有所不同，书中对到达的不是确认号的数据直接丢弃，本次会直接写入队列。
 
 
 lab2:
